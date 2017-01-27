@@ -23,18 +23,27 @@ def createDeck():
 			deck.append(card)
 	return deck
 
-class player():
-	deck = createDeck()
-	def __init__(player):
-		deck = player.deck
-		cardNum = random.randint(0,len(deck))
-		player.card = deck[cardNum]
 
 def deal():
+	deck = createDeck()
 	playerNum = int(input('How many players are there?\n'))
-	players = []
-	for i in range(0,playerNum):
-		players.append(player())
+	deal = True
+	while deal == True:
+		players = []
+		for i in range(0,playerNum):
+			cardNum = random.randint(0,len(deck)-1)
+			players.append(deck[cardNum])
+		temp = playerNum-1
+		for i in range(0,temp):
+			if players[i] == players[i-1]:
+				deal == True
+				print('Breaking')
+				break
+			else:
+				deal = False
 	return players
+	
+#def check(players):
 
+	
 players = deal()
