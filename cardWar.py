@@ -43,7 +43,46 @@ def deal():
 				deal = False
 	return players
 	
-#def check(players):
-
+def suitValues(players):
+	suitValues = []
+	for i in range(0,len(players)):
+		card = players[i]
+		suit = players[1]
+		if suit == 'D':
+			suit = 1
+		elif suit == 'C':
+			suit = 2
+		elif suit == 'H':
+			suit = 3
+		else:
+			suit = 4
+		suitValues.append(suit)
+	return suitValues
+		
+def numberValues(players):
+	numberValues = []
+	for i in range(0,len(players)):
+		number = players[2]
+		numberValues.append(number)
+	return numberValues
+	
+def checkValues(suitValues,numberValues):
+	for i in range(0,len(suitValues)):
+		wins = []
+		for x in range(0,len(suitValues)):
+			if i != x:
+				if numberValues[i] > numberValues[x]:
+					wins.append(True)
+				elif numberValues[i] == numberValues[x]:
+					if suitValues[i] > suitValues[x]:
+						wins.append(True)
+					else:
+						wins.append(False)
+				else:
+					wins.append(False)
+				
 	
 players = deal()
+suitValues = suitValues(players)
+numberValues = numberValues(players)
+checkValues(suitValues,numberValues)
