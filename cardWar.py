@@ -62,27 +62,36 @@ def suitValues(players):
 def numberValues(players):
 	numberValues = []
 	for i in range(0,len(players)):
-		number = players[2]
+		card = players[i]
+		number = card[1]
+		if number == 'J':
+			number = 11
+		elif number == 'Q':
+			number = 12
+		elif number == 'K':
+			number = 13
+		number = int(number)
 		numberValues.append(number)
 	return numberValues
 	
 def checkValues(suitValues,numberValues):
 	for i in range(0,len(suitValues)):
-		wins = []
+		win = True
 		for x in range(0,len(suitValues)):
 			if i != x:
-				if numberValues[i] > numberValues[x]:
-					wins.append(True)
+				if numberValues[i] < numberValues[x]:
+					win = False
 				elif numberValues[i] == numberValues[x]:
-					if suitValues[i] > suitValues[x]:
-						wins.append(True)
-					else:
-						wins.append(False)
-				else:
-					wins.append(False)
-				
+					if suitValues[i] < suitValues[x]:
+						win = False
+		if win == True:
+			winner = i
+			break
+	return winner
 	
 players = deal()
 suitValues = suitValues(players)
 numberValues = numberValues(players)
-checkValues(suitValues,numberValues)
+winner = checkValues(suitValues,numberValues)
+print(players)
+print(winner)
