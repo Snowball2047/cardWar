@@ -42,7 +42,7 @@ def deal():
 			else:
 				deal = False
 	return players
-	
+
 def suitValues(players):
 	suitValues = []
 	for i in range(0,len(players)):
@@ -58,13 +58,19 @@ def suitValues(players):
 			suit = 4
 		suitValues.append(suit)
 	return suitValues
-		
+
 def numberValues(players):
+	high = input('Is ace high?\n')
 	numberValues = []
 	for i in range(0,len(players)):
 		card = players[i]
 		number = card[1]
-		if number == 'J':
+		if number == 'A':
+			if high.upper() == 'YES':
+				number = 14
+			else:
+				number = 1
+		elif number == 'J':
 			number = 11
 		elif number == 'Q':
 			number = 12
@@ -73,7 +79,7 @@ def numberValues(players):
 		number = int(number)
 		numberValues.append(number)
 	return numberValues
-	
+
 def checkValues(suitValues,numberValues):
 	for i in range(0,len(suitValues)):
 		win = True
@@ -88,10 +94,14 @@ def checkValues(suitValues,numberValues):
 			winner = i
 			break
 	return winner
-	
+
+def results(players, winner):
+	for i in range(0,len(players)):
+		print('Player', i+1, ' was dealt: ', players[i])
+	print('The winner was: Player ', winner+1, '!')
+
 players = deal()
 suitValues = suitValues(players)
 numberValues = numberValues(players)
 winner = checkValues(suitValues,numberValues)
-print(players)
-print(winner)
+results(players, winner)
