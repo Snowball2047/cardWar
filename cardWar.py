@@ -1,7 +1,7 @@
 import random
 
 def createDeck():
-	suits = ['S','H','C','D']
+	suits = ['♠','♥','♣','♦']
 	deck = []
 	length = ''
 	standard = input('Do you want to use a standard deck?\n')
@@ -37,7 +37,7 @@ def deal():
 		for i in range(0,temp):
 			if players[i] == players[i-1]:
 				deal == True
-				print('Breaking')
+				#print('Breaking')
 				break
 			else:
 				deal = False
@@ -48,11 +48,11 @@ def suitValues(players):
 	for i in range(0,len(players)):
 		card = players[i]
 		suit = players[1]
-		if suit == 'D':
+		if suit == '♦':
 			suit = 1
-		elif suit == 'C':
+		elif suit == '♣':
 			suit = 2
-		elif suit == 'H':
+		elif suit == '♥':
 			suit = 3
 		else:
 			suit = 4
@@ -98,7 +98,7 @@ def checkValues(suitValues,numberValues):
 def results(players, winner):
 	for i in range(0,len(players)):
 		print('Player', i+1, ' was dealt: ', players[i])
-	print('The winner was: Player ', winner+1, '!')
+	print('The winner was: Player ', str(winner+1) + '!')
 
 players = deal()
 suitValues = suitValues(players)
